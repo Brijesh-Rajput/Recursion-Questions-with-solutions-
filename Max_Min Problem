@@ -1,0 +1,69 @@
+//Q. Find the maximum and minimum element from an given array using recursion
+#include<iostream>
+#include<conio.h>
+using namespace std;
+int* Max_Min(int* arr,int start_index,int last_index,int *temp)
+{
+    if(start_index<last_index)
+    {
+        int mid=(start_index+last_index)/2;
+        
+        int *temp1=Max_Min(arr,start_index,mid,temp);
+        int min1=temp1[0],max1=temp1[1];
+        
+        int *temp2=Max_Min(arr,mid+1,last_index,temp);
+        int min2=temp2[0],max2=temp2[1];
+        
+        min1<min2 ? temp[0]=min1 : temp[0]=min2; //we have use the conditional operator instead of if else 
+        max1>max2 ? temp[1]=max1 : temp[1]=max2;
+        
+        return temp;
+    }
+    else if(start_index==last_index)
+    {
+        temp[0]=arr[start_index]; //Or temp[0]=arr[last_index];
+        temp[1]=arr[start_index]; //Or temp[0]=arr[last_index];
+        return temp;
+    }
+}
+int main()
+{
+    int arr[12]={20,45,98,64,73,27,19,34,64,89,24,78};
+    int Max_Min[2]; //it's a Max_Min array which stores maximum and minimum elements of an array arr 
+    Max_Min(arr,0,11,Max_Min); 
+    cout<<"Maximum Element is "<<Max_Min[1]<<endl;
+    cout<<"Minimum Element is "<<Max_Min[0]<<endl;
+    getch();
+}
+/* OR   --> You,can also use this Max_Min function also 
+int* Max_Min(int* arr,int start_index,int last_index,int *temp)
+{
+    if(start_index<last_index)
+    {
+        int mid=(start_index+last_index)/2;
+        
+        Max_Min(arr,start_index,mid,temp);
+        //int min1=temp1[0],max1=temp1[1];
+        int temp1[2];
+        temp1[0]=temp[0];
+        temp1[1]=temp[1];
+
+        Max_Min(arr,mid+1,last_index,temp);
+        //int min2=temp2[0],max2=temp2[1];
+        int temp2[2];
+        temp2[0]=temp[0];
+        temp2[1]=temp[1];
+
+        temp1[0]<temp2[0] ? temp[0]=temp1[0] : temp[0]=temp2[0];
+        temp1[1]>temp2[1] ? temp[1]=temp1[1] : temp[1]=temp2[1];
+        
+        return temp;
+    }
+    else if(start_index==last_index)
+    {
+        temp[0]=arr[start_index]; //Or temp[0]=arr[last_index];
+        temp[1]=arr[start_index]; //Or temp[0]=arr[last_index];
+        return temp;
+    }
+}
+*/
