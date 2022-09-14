@@ -12,6 +12,9 @@ int main()
     int n;
     cout<<"Enter a Number(>=0) to find factorial of that number :- ";
     cin>>n;
-    cout<<"Factorial of "<<n<<" is "<<fact(n);
+    if(n<0)
+        cout<<"Error";
+    else
+        cout<<"Factorial of "<<n<<" is "<<fact(n);
     getch();
 }
